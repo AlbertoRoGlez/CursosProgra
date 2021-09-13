@@ -1,0 +1,15 @@
+/* .ejemplo= referirse a una clase */
+/* #ejemplo = referirse a un id */
+/* .ejemplo #ejemplo = referirse a un id dentro de una clase */
+
+#footer {
+  background: #03091e;
+}
+
+#footer a {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
