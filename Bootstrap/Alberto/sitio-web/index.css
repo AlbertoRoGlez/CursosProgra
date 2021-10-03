@@ -1,6 +1,17 @@
 /* .ejemplo= referirse a una clase */
 /* #ejemplo = referirse a un id */
 /* .ejemplo #ejemplo = referirse a un id dentro de una clase */
+/* #ejemplo .ejemplo = referirse a una clase dentro de un id */
+/* a, div, p, etc. = referirse a etiquetas html */
+
+.btn-platzi {
+  background-color: #97c93e;
+  color: white !important;
+}
+
+.btn-platzi:hover {
+  background-color: #82ad36;
+}
 
 .text-platzi {
   color: #97c93e !important;
