@@ -4,6 +4,10 @@
 /* #ejemplo .ejemplo = referirse a una clase dentro de un id */
 /* a, div, p, etc. = referirse a etiquetas html */
 
+.badges {
+  text-align: right;
+}
+
 .btn-platzi {
   background-color: #97c93e;
   color: white !important;
@@ -45,6 +49,15 @@
 #carousel .overlay .container,
 #carousel .overlay .row {
   height: 100%;
+}
+
+#place-time img {
+  max-width: 100%;
+}
+
+#place-time {
+  background-color: #343a40;
+  color: white;
 }
 
 #footer {
