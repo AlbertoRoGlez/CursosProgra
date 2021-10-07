@@ -9,4 +9,4 @@ npm start
 
 ---
 
-Empezar leyendo el index.js en platzi-badges/src/index.js
+Empezar leyendo el index.js en Alberto/index.js
