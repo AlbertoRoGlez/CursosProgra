@@ -7,12 +7,14 @@ import Badge from "../components/badge";
 class BadgeNew extends React.Component {
   render() {
     return (
-      //Navbar-----------------------------------------------------------------//
       <div>
+        {/* //Navbar-----------------------------------------------------------------// */}
         <Navbar />
         <div className="BadgeNew__hero">
           <img className="img-fluid" src={header} alt="Logo" />
         </div>
+        {/* //Navbar-----------------------------------------------------------------// */}
+        {/* //Badge-----------------------------------------------------------------// */}
         <div className="container">
           <div className="row">
             <div className="col">
@@ -26,8 +28,8 @@ class BadgeNew extends React.Component {
             </div>
           </div>
         </div>
+        {/* //Badge-----------------------------------------------------------------// */}
       </div>
-      //Navbar-----------------------------------------------------------------//
     );
   }
 }
