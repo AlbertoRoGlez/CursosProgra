@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import BadgeNew from "./pages/badgenew";
 import "bootstrap/dist/css/bootstrap.css";
 import "./global.css";
-import Badge from "./components/badge";
+import Badges from "./pages/badges";
 
 const container = document.getElementById("app");
 
@@ -20,4 +20,4 @@ const container = document.getElementById("app");
 // );
 //En Badge del Dom.render colocamos la información de los props que estarán en el badge.js//
 //-------------------------------------------------------------------------------------------------------------------------------//
-ReactDOM.render(<BadgeNew />, container);
+ReactDOM.render(<Badges />, container);
