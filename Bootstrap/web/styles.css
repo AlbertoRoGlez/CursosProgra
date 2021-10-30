@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "Spartan";
+  src: url(https://fonts.google.com/specimen/Spartan);
+}
+
+body {
+  background-color: rgb(235, 235, 235);
+}
+
+.agrandar {
+  height: 10vh;
+}
+
+#main {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.text-enfasis {
+  font-weight: bold;
+  line-height: 25px;
+  color: rgb(129, 0, 161) !important;
+}
+
+.text-secundario {
+  line-height: 20px;
+  font-weight: lighter;
+  color: hsl(300, 43%, 22%);
+}
+
+.bg-stairs {
+  font-weight: bold;
+  color: rgb(129, 0, 161) !important;
+  background-color: hsl(300, 24%, 96%);
+}
+
+.carta {
+  background-color: hsl(300, 42%, 35%);
+  color: white;
+}
+
+.carta img {
+  width: 70%;
+}
+.cartapersona {
+  line-height: 0.5vh;
+}
+.titulo {
+  color: hsl(333, 80%, 67%);
+}
