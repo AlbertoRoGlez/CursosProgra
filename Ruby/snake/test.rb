@@ -17,7 +17,7 @@ tests_sum = {
 }
 
 tests_sum.each do |digito, resultado|
-    byebug
+    #byebug
     if !(calc.sum(digito[0], digito[1]) == resultado)
     puts "Test fallido por digito #{digito}, resultado esperado #{resultado}"
     else 
