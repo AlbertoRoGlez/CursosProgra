@@ -1,46 +1,78 @@
-require "ruby2d" #para poder tener acceso a los modulos de ruby2d
-
+require "ruby2d"
+require_relative "../model/state"
 
 module View
-    class Ruby2dView
-        def initialize #definimos constructor
-            @pixel_size = 50 #pixel_size define el tamaño de nuestros cuadritos
-        end
-        def render(state)   #en render pondremos la lógica principal, render debe recibir el estado ("state") de la aplicación donde va a estar 
-                            #alojado todos los datos necesarios para pintar el juego
-            extend Ruby2D::DSL #aqui usamos Ruby2D, el cual usa un DSL especializado en aplicaciones graficas
-            set(title:"Snake",
-                width: @pixel_size * state.grid.cols,
-                height: @pixel_size * state.grid.rows) #con set podemos configurar la ventana de nuestra aplicación
-                render_food(state)
-                render_snake(state)
-            show
-        end
+  class Ruby2dView
 
-        private
-
-        def render_food(state) #para hacer el render de food necesitamos pintar un cuadrado
-            extend Ruby2D::DSL
-            food = state.food #Obtenemos food de state para poder acceder a sus col y row
-            Square.new(  
-                x: food.col * @pixel_size, #definimos el tamaño de nuestra comida con la columna donde se encuentra multiplicada por nuestro pixel_size
-                y: food.row * @pixel_size, #definimos el tamaño de nuestra comida con la fila donde se encuentra multiplicada por nuestro pixel_size
-                size: @pixel_size,
-                color: 'yellow',
-            )
-        end
-
-        def render_snake(state)
-            extend Ruby2D::DSL
-            snake = state.snake
-            snake.positions.each do |pos|
-                Square.new(
-                x: pos.col * @pixel_size,
-                y: pos.row * @pixel_size,
-                size: @pixel_size,
-                color: 'green'
-                )
-            end
-        end
+    def initialize(app)
+      @pixel_size = 50
+      @app = app
     end
+
+    def start(state)
+      extend Ruby2D::DSL
+      set(
+          title: "Snake", 
+          width: @pixel_size * state.grid.cols,
+          height: @pixel_size * state.grid.rows)
+      on :key_down do |event|
+        # A key was pressed
+        handle_key_event(event)
+      end
+      show
+    end
+
+    def render(state)
+      extend Ruby2D::DSL
+      close if state.game_finished
+      render_food(state)
+      render_snake(state)
+    end
+
+    private
+
+    def render_food(state)
+      @food.remove if @food
+      extend Ruby2D::DSL
+      food = state.food
+      @food = Square.new(
+        x: food.col * @pixel_size,
+        y: food.row * @pixel_size,
+        size: @pixel_size,
+        color: 'yellow'
+      )
+    end
+
+    def render_snake(state)
+      @snake_positions.each(&:remove) if @snake_positions
+      extend Ruby2D::DSL
+      snake = state.snake
+      @snake_positions = snake.positions.map do |pos|
+        Square.new(
+          x: pos.col * @pixel_size,
+          y: pos.row * @pixel_size,
+          size: @pixel_size,
+          color: 'green'
+        )
+      end
+    end
+
+    def handle_key_event(event)
+      case event.key
+      when "up"
+        # cambiar direccion hacia arriba
+        @app.send_action(:change_direction, Model::Direction::UP)
+      when "down"
+        # cambiar direccion hacia abajo
+        @app.send_action(:change_direction, Model::Direction::DOWN)
+      when "left"
+        # cambiar direccion hacia izquierda
+        @app.send_action(:change_direction, Model::Direction::LEFT)
+      when "right"
+        # cambiar direccion hacia derecha
+        @app.send_action(:change_direction, Model::Direction::RIGHT)
+      end
+    end
+  end
+
 end

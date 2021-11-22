@@ -1,21 +1,41 @@
-#Aqui estará el punto de entrada de nuestra aplicación
-require_relative "view/ruby2d" #Este es un método que nos permite incluir otros archivos de Ruby utilizando un path relativo
+require_relative "view/ruby2d"
 require_relative "model/state"
+require_relative "actions/actions"
 
+class App
+  def initialize
+    @state = Model::initial_state
+  end
 
+  def start
+    @view = View::Ruby2dView.new(self)
+    timer_thread = Thread.new { init_timer }
+    @view.start(@state)
+    timer_thread.join
+  end
 
-#Vamos a crear nuestra clase App
-class App 
-    def start
-        view = View::Ruby2dView.new #Creamos una nueva instancia de clase llamada view, utilizando la clase Ruby2dView dentro del modulo View
-        init_state = Model::initial_state #nos va a devolver el estado inicial de la aplicación
-        view.render(init_state) #Usamos el método render de nuestra instancia de clase Ruby2dView
+  def init_timer
+    loop do
+      if @state.game_finished
+        puts "Juego finalizado"
+        puts "Puntaje: #{@state.snake.positions.length}"
+        break
+      end
+      @state = Actions::move_snake(@state)
+      @view.render(@state)
+      sleep 0.5
     end
+  end
 
-    def init_timer #Creamos nuestro método para el timer, el cual será un loop infinito que va a estar desencadenando la acción de mover la serpiente
-        loop do
-            sleep 0.5 #Sleep lo que hace es pararlo, en este caso por 0.5 segundos
-            #trigger movement
-        end
+  def send_action(action, params)
+    # :change_direction, Model::Direction::UP
+    new_state = Actions.send(action, @state, params)
+    if new_state.hash != @state
+      @state = new_state
+      @view.render(@state)
     end
+  end
 end
+
+app = App.new
+app.start
