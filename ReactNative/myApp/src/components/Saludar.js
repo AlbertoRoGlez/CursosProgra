@@ -1,16 +1,24 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import PropTypes from "prop-types";
 
 export const Saludar = (props) => {
-  const { name, age } = props;
-  console.log(name, age);
+  const { firstname, lastname } = props;
   return (
-    <View>
-      <Text>
-        Hola {name}, de {age} años de edad
-      </Text>
-    </View>
+    <Text>
+      Hola {firstname} {lastname}, bienvenido.
+    </Text>
   );
+};
+
+Saludar.defaultProps = {
+  firstname: "Alberto",
+  lastname: "Rosales",
+};
+
+Saludar.propTypes = {
+  firstname: PropTypes.string.isRequired,
+  lastname: PropTypes.string,
 };
 
 const styles = StyleSheet.create({});
