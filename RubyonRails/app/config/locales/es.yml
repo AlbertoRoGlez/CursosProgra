@@ -1,0 +1,16 @@
+---
+es:
+  books:
+    form:
+      author: Autor
+      description: Descripción
+      pages_counter: Contador de páginas
+      title: Titulo
+  hello: Hola mundo
+  users:
+    form:
+      about_me: Acerca de mi
+      first_name: Nombre
+      last_name: Apellidos
+      phone: Teléfono
+      submit: Enviar
