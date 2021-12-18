@@ -1,0 +1,8 @@
+---
+en:
+  categories:
+    form:
+      description: Description
+      name: Name
+    new_category: New category
+  hello: Hello world
